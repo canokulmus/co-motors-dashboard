@@ -1,10 +1,9 @@
-import React from 'react'
-import { setUser } from '../../store'
-import { useSelector, useDispatch } from 'react-redux'
+import React from "react";
+import { setUser } from "store";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
     dispatch(
@@ -13,18 +12,14 @@ const Login = () => {
         username: "johndoe",
         loggedIn: true,
       })
-    )
-  }
+    );
+  };
 
   return (
     <div>
-      <button
-        onClick={handleLogin}
-      >
-        Login
-      </button>
+      <button onClick={handleLogin}>Login</button>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

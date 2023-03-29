@@ -1,5 +1,13 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "layouts/*": ["./layouts/*"],
+      "components/*": ["./components/*"],
+      "store/*": ["./store/*"],
+      "theme/*": ["./theme/*"],
+      "assets/*": ["./assets/*"],
+    },
     "target": "ES6",
     "lib": [
       "dom",
