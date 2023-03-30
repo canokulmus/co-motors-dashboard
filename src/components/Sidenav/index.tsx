@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
@@ -7,13 +7,14 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { useSelector, useDispatch } from 'react-redux';
-
+import borders from 'assets/theme/base/borders';
 import colors from 'assets/theme/base/colors';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { toggleSidenav } from 'store/slices/sidenavSlice';
 import { routes } from 'routes';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+
 const Sidenav = () => {
 
   const dispatch = useDispatch();
@@ -24,57 +25,105 @@ const Sidenav = () => {
   const list = () => (
     <Box
       role="presentation"
-      sx={{ width: '100%'}}
+      mx={3}
     >
-
+      <Divider 
+        sx={{
+          backgroundColor: 'white',
+          margin: '15px 0',
+        }}
+      />
       <List>
+
         {routes.map((route) => (
           <Link to={route.route}
-            style = {{
-              textDecoration: 'none',
-              color: 'inherit',
-            }}
+            style = {{ textDecoration: 'none',color: 'inherit'}}
             key = {route.key}
           >
             <ListItem
               key={route.key}
               disablePadding
               sx = {{
-                backgroundColor:  pathname === route.route ? `red !important` : 'transparent',
+                backgroundColor:  pathname === route.route ? `${colors.sidenavLink.active} !important` : 'transparent',
+                borderRadius: borders.borderRadius.lg,
+
               }}
             >
-              <ListItemButton>
-                <ListItemIcon>
-                  {route.icon}
-                </ListItemIcon>
-                <ListItemText primary={route.name} />
+              <ListItemButton
+                sx = {{
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: pathname === route.route ? 'inherit': `${colors.sidenavLink.activeIcon} !important`,
+                  height: "50px !important",
+                  borderRadius: borders.borderRadius.lg,
+                }}
+              >
+                  <Box
+                    display={'flex'}
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    sx = {{
+                      backgroundColor: pathname === route.route ?  `${colors.sidenavLink.activeIcon} !important`: `${colors.sidenavLink.active} !important`,
+                      width: 30,
+                      height: 30,
+                      borderRadius: borders.borderRadius.button,
+                    }}
+                  >
+                    {route.icon}
+                  </Box>
+
+                <Typography
+                  variant='h6'
+                  ml = {2}
+                  sx = {{
+                    // vertical align
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                  }}
+                >
+                  {route.name}
+                </Typography>
               </ListItemButton>
             </ListItem>
           </Link>
         ))}
+      
       </List>
-
-      <Divider />
-
-      <Button
-        onClick={() => dispatch(toggleSidenav(false))}
-      >
-        close
-      </Button>
     </Box>
   );
 
   return (
       <Box
         sx={{
-          backgroundColor: `${colors.darkerBackground} !important`,
           width: sidenav.width,
           height: sidenav.height,
           display: sidenav.open ? 'flex' : 'none',
           transition: 'all 0.3s ease-in-out',
+          position: 'fixed',
         }}
+        p = {2}
       >
-        {list()}
+        <Box
+          sx={{
+            backgroundColor: `${colors.darkerBackground} !important`,
+            width: '100%',
+            height: '100%',
+            borderRadius: borders.borderRadius.xl,
+          }}
+        >
+          <Box>
+            <Typography
+              variant = 'h4'
+              textAlign={'center'}
+              my = {2}
+            >
+              CO-Motors 
+            </Typography>
+
+          </Box>
+
+          {list()}
+        </Box>
       </Box>
   );
 }

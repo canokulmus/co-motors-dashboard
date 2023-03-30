@@ -1,12 +1,12 @@
-import React from "react";
 import DashboardLayout from "pageLayouts/DashboardLayout";
 
-const Dashboard = () => {
+const Products = () => {
+
   return (
     <DashboardLayout>
-      <div>Dashboardd</div>
+      <div>Cars</div>
     </DashboardLayout>
   );
 };
 
-export default Dashboard;
+export default Products;

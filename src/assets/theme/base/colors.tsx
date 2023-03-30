@@ -38,10 +38,15 @@ const colors = {
   },
 
   dark: {
-    primary: '#344767',
-    secondary: '#121241',
-    body: '#030c1d',
+    main: "#344767",
+    focus: "#121241",
+    body: "#030c1d",
   },
+
+  sidenavLink: {
+    active: '#1a1f37',
+    activeIcon: '#35d28a', 
+  }
 };
 
 export default colors;

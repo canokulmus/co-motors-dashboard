@@ -1,6 +1,7 @@
 import React from "react";
 import { setUser } from "store";
 import { useDispatch } from "react-redux";
+import { Box, Button } from "@mui/material";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -16,9 +17,9 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <button onClick={handleLogin}>Login</button>
-    </div>
+    <Box>
+      <Button onClick={handleLogin}>Login</Button>
+    </Box>
   );
 };
 

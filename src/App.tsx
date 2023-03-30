@@ -1,24 +1,18 @@
 import { useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
-//components
 import Sidenav from 'components/Sidenav';
-
-//layouts
-import Dashboard from 'layouts/dashboard';
-import Login from 'layouts/login';
 import { Box } from '@mui/material';
 
-//store
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { routes } from 'routes';
 
 function App() {
   const { pathname  } = useLocation();
-  // const sidenav = useSelector((state: any) => state.sidenav);
+  const sidenav = useSelector((state: any) => state.sidenav);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
-
     if (document.scrollingElement) {
       document.scrollingElement.scrollTop = 0;
     }
@@ -27,16 +21,25 @@ function App() {
   return (
     <>
       <CssBaseline />
-
       <Box
         display={'flex'}
       >
         <Sidenav />
-        <Switch>
-          <Route path='/dashboard' component={Dashboard} />
-          <Route path='/login' component={Login} />
-          <Redirect from='*' to='/dashboard' />
-        </Switch>
+        <Box
+          sx = {{ marginLeft:sidenav.open ? ` ${sidenav.width}px` : 0 }}
+          width={'100%'}
+        >
+          <Switch>
+            {routes.map((route) => (
+              <Route
+                path={route.route}
+                component={route.component}
+                key={route.key}
+              />
+            ))}
+            <Redirect from='*' to='/dashboard' />
+          </Switch>
+        </Box>
       </Box>
     </>
   );

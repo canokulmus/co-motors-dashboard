@@ -1,11 +1,12 @@
 //layouts
 import Dashboard from "layouts/dashboard";
+import Cars from "layouts/cars"
 import Login from "layouts/login";
 
 //icons
 import { IoHome } from "react-icons/io5";
 import { IoPerson } from "react-icons/io5";
-
+import { IoCarSport } from "react-icons/io5";
 export interface IRoute {
   name: string;
   key: string;
@@ -23,9 +24,16 @@ export const routes: IRoute[] = [
     component: Dashboard,
   },
   {
-    name: "Login",
-    key: "login",
-    route: "/login",
+    name: "Cars",
+    key: "cars",
+    route: "/cars",
+    icon: <IoCarSport size="15px" color="inherit" />,
+    component: Cars,
+  },
+  {
+    name: "Sign In",
+    key: "signin",
+    route: "/signin",
     icon: <IoPerson size="15px" color="inherit" />,
     component: Login,
   },
