@@ -4,11 +4,13 @@ import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import Sidenav from 'components/Sidenav';
 import { Box } from '@mui/material';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { routes } from 'routes';
+import { toggleSidenav } from './store';
 
 function App() {
   const { pathname  } = useLocation();
+  const dispatch = useDispatch();
   const sidenav = useSelector((state: any) => state.sidenav);
 
   useEffect(() => {
@@ -16,6 +18,7 @@ function App() {
     if (document.scrollingElement) {
       document.scrollingElement.scrollTop = 0;
     }
+
   }, [pathname]);
 
   return (
@@ -24,9 +27,12 @@ function App() {
       <Box
         display={'flex'}
       >
-        <Sidenav />
+
+        {pathname !== '/signin' && <Sidenav />}
+
         <Box
-          sx = {{ marginLeft:sidenav.open ? ` ${sidenav.width}px` : 0 }}
+          sx = {{ marginLeft: sidenav.open && pathname !== '/signin'
+             ? ` ${sidenav.width}px` : 0 }}
           width={'100%'}
         >
           <Switch>
@@ -37,7 +43,7 @@ function App() {
                 key={route.key}
               />
             ))}
-            <Redirect from='*' to='/dashboard' />
+            <Redirect from='*' to='/signin' />
           </Switch>
         </Box>
       </Box>

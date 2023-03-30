@@ -113,7 +113,7 @@ const Sidenav = () => {
             mt={4}
           >
             <img 
-              src="images/logo.svg" 
+              src="images/logo2.svg" 
               width={`${sidenav.width * 0.75}px`}
               alt=""
              />

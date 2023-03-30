@@ -6,7 +6,7 @@ import Login from "layouts/login";
 //icons
 import { IoHome } from "react-icons/io5";
 import { IoPerson } from "react-icons/io5";
-import { IoCarSport } from "react-icons/io5";
+import { IoCarSportSharp } from "react-icons/io5";
 export interface IRoute {
   name: string;
   key: string;
@@ -27,7 +27,7 @@ export const routes: IRoute[] = [
     name: "Cars",
     key: "cars",
     route: "/cars",
-    icon: <IoCarSport size="15px" color="inherit" />,
+    icon: <IoCarSportSharp size="15px" color="inherit" />,
     component: Cars,
   },
   {

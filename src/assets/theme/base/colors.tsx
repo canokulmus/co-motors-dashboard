@@ -45,7 +45,7 @@ const colors = {
 
   sidenavLink: {
     active: '#1a1f37',
-    activeIcon: '#35d28a', 
+    activeIcon: '#DB631C', 
   }
 };
 
