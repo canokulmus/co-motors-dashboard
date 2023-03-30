@@ -5,7 +5,7 @@ const colors = {
   },
 
   bodyBackground: '#141230',
-
+  darkerBackground: '#090d29',
   black: {
     light: '#141414',
     primary: '#000000',

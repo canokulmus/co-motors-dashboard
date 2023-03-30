@@ -7,7 +7,12 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "@typescript-eslint/no-unused-vars": ["error", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }]
+    "@typescript-eslint/no-unused-vars": ["error", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }],
+    "no-multiple-empty-lines": ["error", { "max": 1 }],
+
+    // trailing spaces are not allowed in the code
+    "no-trailing-spaces": "error"
+
   }
   
 }

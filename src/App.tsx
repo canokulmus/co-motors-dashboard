@@ -7,9 +7,14 @@ import Sidenav from 'components/Sidenav';
 //layouts
 import Dashboard from 'layouts/dashboard';
 import Login from 'layouts/login';
+import { Box } from '@mui/material';
+
+//store
+// import { useSelector } from 'react-redux';
 
 function App() {
-  const { pathname } = useLocation();
+  const { pathname  } = useLocation();
+  // const sidenav = useSelector((state: any) => state.sidenav);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -22,12 +27,17 @@ function App() {
   return (
     <>
       <CssBaseline />
-      <Sidenav />
-      <Switch>
-        <Route path='/dashboard' component={Dashboard} />
-        <Route path='/login' component={Login} />
-        <Redirect from='*' to='/dashboard' />
-      </Switch>
+
+      <Box
+        display={'flex'}
+      >
+        <Sidenav />
+        <Switch>
+          <Route path='/dashboard' component={Dashboard} />
+          <Route path='/login' component={Login} />
+          <Redirect from='*' to='/dashboard' />
+        </Switch>
+      </Box>
     </>
   );
 }
