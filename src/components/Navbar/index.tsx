@@ -166,7 +166,7 @@ const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>
             <Box
                 display={"flex"}
             >
-                <Search
+                {/* <Search
                     sx={{
                         height: '100%',
                     }}
@@ -178,7 +178,7 @@ const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>
                     placeholder="Car Search…"
                     inputProps={{ 'aria-label': 'search' }}
                     />
-                </Search>
+                </Search> */}
 
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
 

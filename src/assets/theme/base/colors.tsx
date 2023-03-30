@@ -17,6 +17,10 @@ const colors = {
     secondary: '#131538',
   },
 
+  primary: {
+    main:"#DB631C"
+  },
+
   orange: {
     primary: '#f6ad55',
     secondary: '#f6ad55',
