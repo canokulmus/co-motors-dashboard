@@ -4,20 +4,16 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import { useSelector, useDispatch } from 'react-redux';
 import borders from 'assets/theme/base/borders';
 import colors from 'assets/theme/base/colors';
-import { Button, Typography } from '@mui/material';
-import { toggleSidenav } from 'store/slices/sidenavSlice';
+import {  Typography } from '@mui/material';
 import { routes } from 'routes';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 const Sidenav = () => {
 
-  const dispatch = useDispatch();
   const sidenav = useSelector((state: any) => state.sidenav);
 
   const { pathname  } = useLocation();
@@ -29,7 +25,7 @@ const Sidenav = () => {
     >
       <Divider 
         sx={{
-          backgroundColor: 'white',
+          backgroundColor: colors.dark.main,
           margin: '15px 0',
         }}
       />
@@ -111,17 +107,17 @@ const Sidenav = () => {
             borderRadius: borders.borderRadius.xl,
           }}
         >
-          <Box>
-            <Typography
-              variant = 'h4'
-              textAlign={'center'}
-              my = {2}
-            >
-              CO-Motors 
-            </Typography>
-
+          <Box
+            display={'flex'}
+            justifyContent={'center'}
+            mt={4}
+          >
+            <img 
+              src="images/logo.svg" 
+              width={`${sidenav.width * 0.75}px`}
+              alt=""
+             />
           </Box>
-
           {list()}
         </Box>
       </Box>

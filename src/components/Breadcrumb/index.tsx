@@ -5,8 +5,11 @@ import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 import { IoHome } from "react-icons/io5";
 
+interface BreadcrumbProps {
+  routeName?: string;
+}
 
-const Breadcrumb = () => {
+const Breadcrumb = ({routeName}: BreadcrumbProps) => {
   return (
     <Box role="presentation" >
       <Breadcrumbs aria-label="breadcrumb">
@@ -20,7 +23,7 @@ const Breadcrumb = () => {
           variant='subtitle2'
           color={'white'}
         >
-          Dashboard
+          {routeName}
         </Typography>
       </Breadcrumbs>
     </Box>

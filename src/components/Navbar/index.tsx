@@ -17,6 +17,9 @@ import borders from 'assets/theme/base/borders';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSidenav } from 'store/index';
 
+import { useLocation } from 'react-router-dom';
+import { routes } from 'routes';
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -58,85 +61,86 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
  const Navbar = () => {
 
-    const dispatch = useDispatch();
-    const sidenav = useSelector((state: any) => state.sidenav);
+const dispatch = useDispatch();
+const sidenav = useSelector((state: any) => state.sidenav);
+const { pathname  } = useLocation();
 
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
+const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const isMenuOpen = Boolean(anchorEl);
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
-  };
+    };
 
-  const handleMobileMenuClose = () => {
+    const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
-  };
+    };
 
-  const handleMenuClose = () => {
+    const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
-  };
+    };
 
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
-  };
+    };
 
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
+    const menuId = 'primary-search-account-menu';
+    const renderMenu = (
     <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
+        anchorEl={anchorEl}
+        anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
+        }}
+        id={menuId}
+        keepMounted
+        transformOrigin={{
         vertical: 'top',
         horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
+        }}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
-  );
+    );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
+    const mobileMenuId = 'primary-search-account-menu-mobile';
+    const renderMobileMenu = (
     <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
+        anchorEl={mobileMoreAnchorEl}
+        anchorOrigin={{
         vertical: 'top',
         horizontal: 'right',
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
+        }}
+        id={mobileMenuId}
+        keepMounted
+        transformOrigin={{
         vertical: 'top',
         horizontal: 'right',
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
+        }}
+        open={isMobileMenuOpen}
+        onClose={handleMobileMenuClose}
     >
-      <MenuItem onClick={handleProfileMenuOpen}>
+        <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
+            size="large"
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
         >
-          <AccountCircle />
+            <AccountCircle />
         </IconButton>
         <p>Profile</p>
-      </MenuItem>
+        </MenuItem>
     </Menu>
-  );
+    );
 
   return (
     <Box>
@@ -155,7 +159,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
             }} 
         >
 
-          <Breadcrumb />
+          <Breadcrumb
+            routeName={routes.find((route) => route.route === pathname)?.name}
+          />
 
             <Box
                 display={"flex"}

@@ -7,11 +7,11 @@ interface DashboardLayoutProps {
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     return (
-        <Box 
-            p = {3}
-        >
+        <Box p = {3}>
             <Navbar />
-            {children}
+            <Box mt={3}>
+                {children}
+            </Box>
         </Box>
     )
 }
