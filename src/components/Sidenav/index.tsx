@@ -4,17 +4,17 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import { useSelector, useDispatch } from 'react-redux';
 import borders from 'assets/theme/base/borders';
 import colors from 'assets/theme/base/colors';
 import {  Typography } from '@mui/material';
 import { routes } from 'routes';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { useAppSelector } from 'hooks/useTypedSelector';
 
 const Sidenav = () => {
 
-  const sidenav = useSelector((state: any) => state.sidenav);
+  const sidenav = useAppSelector((state: any) => state.sidenav);
 
   const { pathname  } = useLocation();
 

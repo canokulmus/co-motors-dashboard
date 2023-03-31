@@ -1,20 +1,34 @@
 import React, {useEffect} from "react";
 import DashboardLayout from "pageLayouts/DashboardLayout";
-import { useDispatch, useSelector } from "react-redux";
 import { fetchEmployees } from "store";
+import { useAppDispatch, useAppSelector } from 'hooks/useTypedSelector';
+import EmployeeTable from "./EmployeeTable";
 
 const Employees = () => {
 
-  const dispatch = useDispatch();
-  const employees = useSelector((state: any) => state.employee);
+  const dispatch = useAppDispatch();
+  const employees = useAppSelector((state) => state.employee);
+
+  const tableHeaders = [
+    "",
+    "Employee No",
+    "Name",
+    "Username",
+    "Email",
+    "Phone",
+    "Website",
+  ]
 
   useEffect(() => {
-    // dispatch(fetchEmployees()); 
-  }, [dispatch]);
+    !employees.length && dispatch(fetchEmployees());
+  }, []);
 
   return (
     <DashboardLayout>
-      <div>Employees</div>
+      <EmployeeTable 
+        employees = {employees}
+        tableHeaders = {tableHeaders}
+      />
     </DashboardLayout>
   );
 };

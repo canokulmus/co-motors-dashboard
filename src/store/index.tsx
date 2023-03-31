@@ -1,8 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { userReducer, setUser } from "store/slices/userSlice";
 import { sidenavReducer, toggleSidenav } from "store/slices/sidenavSlice";
-import { employeeReducer} from "store/slices/employeeSlice";
-import { fetchEmployees } from "store/thunk";
+import { employeeReducer, fetchEmployees} from "store/slices/employeeSlice";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +10,10 @@ const store = configureStore({
     employee: employeeReducer,
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;
 
 export {
   store,

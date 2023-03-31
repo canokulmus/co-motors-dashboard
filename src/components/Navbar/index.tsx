@@ -14,11 +14,11 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import Breadcrumb from 'components/Breadcrumb';
 import borders from 'assets/theme/base/borders';
 
-import { useDispatch, useSelector } from 'react-redux';
 import { toggleSidenav } from 'store/index';
 
 import { useLocation } from 'react-router-dom';
 import { routes } from 'routes';
+import { useAppDispatch, useAppSelector } from 'hooks/useTypedSelector';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -61,8 +61,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
  const Navbar = () => {
 
-const dispatch = useDispatch();
-const sidenav = useSelector((state: any) => state.sidenav);
+const dispatch = useAppDispatch();
+const sidenav = useAppSelector((state: any) => state.sidenav);
 const { pathname  } = useLocation();
 
 const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import { setUser } from "store";
-import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom"; 
 import { Box, Button, Grid, Typography } from "@mui/material";
 import Input from "components/Input";
 
 import colors from "assets/theme/base/colors";
 import borders from "assets/theme/base/borders";
+import { useAppDispatch } from 'hooks/useTypedSelector';
 
 
 const authUsers = [
@@ -19,7 +19,7 @@ const authUsers = [
 ]
 
 const Login = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

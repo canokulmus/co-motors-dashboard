@@ -7,6 +7,7 @@
       "store/*": ["./store/*"],
       "theme/*": ["./theme/*"],
       "assets/*": ["./assets/*"],
+      "hooks/*": ["./hooks/*"],
     },
     "target": "ES6",
     "lib": [

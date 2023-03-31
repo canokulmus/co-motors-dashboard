@@ -4,14 +4,14 @@ import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import Sidenav from 'components/Sidenav';
 import { Box } from '@mui/material';
 
-import { useSelector, useDispatch } from 'react-redux';
 import { routes } from 'routes';
 import { toggleSidenav } from './store';
+import { useAppDispatch, useAppSelector } from './hooks/useTypedSelector';
 
 function App() {
   const { pathname  } = useLocation();
-  const dispatch = useDispatch();
-  const sidenav = useSelector((state: any) => state.sidenav);
+  const dispatch = useAppDispatch();
+  const sidenav = useAppSelector((state) => state.sidenav);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
