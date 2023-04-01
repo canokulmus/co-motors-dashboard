@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
+import Button from '@mui/material/Button';
 import ListItemButton from '@mui/material/ListItemButton';
 import borders from 'assets/theme/base/borders';
 import colors from 'assets/theme/base/colors';
@@ -10,13 +11,27 @@ import {  Typography } from '@mui/material';
 import { routes } from 'routes';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { useAppSelector } from 'hooks/useTypedSelector';
+import { useAppSelector, useAppDispatch } from 'hooks/useTypedSelector';
+import { setUser } from 'store';
+import { useHistory } from 'react-router-dom';
 
 const Sidenav = () => {
 
-  const sidenav = useAppSelector((state: any) => state.sidenav);
-
+  const dispatch = useAppDispatch();
+  const history = useHistory();
+  const {sidenav, user } = useAppSelector((state) => state);
   const { pathname  } = useLocation();
+
+
+  const handleLogout = () => {
+    dispatch(setUser({
+      loggedIn: false,
+      name: '',
+      username: '',
+    }));
+    history.push('/signin');
+  }
+
 
   const list = () => (
     <Box
@@ -42,7 +57,6 @@ const Sidenav = () => {
               sx = {{
                 backgroundColor:  pathname === route.route ? `${colors.sidenavLink.active} !important` : 'transparent',
                 borderRadius: borders.borderRadius.lg,
-
               }}
             >
               <ListItemButton
@@ -71,11 +85,8 @@ const Sidenav = () => {
                 <Typography
                   variant='h6'
                   ml = {2}
-                  sx = {{
-                    // vertical align
-                    display: 'flex',
-                    alignItems: 'flex-end',
-                  }}
+                  display = 'flex'
+                  alignItems = 'flex-end'
                 >
                   {route.name}
                 </Typography>
@@ -83,7 +94,6 @@ const Sidenav = () => {
             </ListItem>
           </Link>
         ))}
-      
       </List>
     </Box>
   );
@@ -100,6 +110,9 @@ const Sidenav = () => {
         p = {2}
       >
         <Box
+          display={'flex'}
+          flexDirection={'column'}
+          justifyContent={'space-between'}
           sx={{
             backgroundColor: `${colors.darkerBackground} !important`,
             width: '100%',
@@ -107,18 +120,43 @@ const Sidenav = () => {
             borderRadius: borders.borderRadius.xl,
           }}
         >
-          <Box
-            display={'flex'}
-            justifyContent={'center'}
-            mt={4}
-          >
-            <img 
-              src="images/logo2.svg" 
-              width={`${sidenav.width * 0.75}px`}
-              alt=""
-             />
+          <Box>
+            <Box
+              display={'flex'}
+              justifyContent={'center'}
+              mt={4}
+            >
+              <img 
+                src="images/logo2.svg" 
+                width={`${sidenav.width * 0.75}px`}
+                alt=""
+              />
+            </Box>
+            {list()}
           </Box>
-          {list()}
+
+          <Box
+            p = {3}
+          >
+            <Button
+              variant="contained"
+              sx={{
+                color: colors.text.primary,
+                backgroundColor: colors.primary.main,
+                width: '100%',
+                padding: '15px 0 15px 0 !important', 
+                borderRadius: borders.borderRadius.lg,
+                marginTop: '20px',
+                '&:hover': {
+                  backgroundColor: colors.text.primary,
+                  color: colors.primary.main,
+                }
+              }}
+              onClick = {handleLogout}
+            >
+              Sign Out
+            </Button>
+          </Box>
         </Box>
       </Box>
   );
