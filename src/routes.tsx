@@ -14,6 +14,7 @@ export interface IRoute {
   route: string;
   icon: JSX.Element;
   component: React.FC;
+  protected: boolean;
 }
 
 export const routes: IRoute[] = [
@@ -23,6 +24,7 @@ export const routes: IRoute[] = [
     route: "/dashboard",
     icon: <IoHome size="15px" color="inherit" />,
     component: Dashboard,
+    protected: true,
   },
   {
     name: "Cars",
@@ -30,6 +32,7 @@ export const routes: IRoute[] = [
     route: "/cars",
     icon: <IoCarSportSharp size="15px" color="inherit" />,
     component: Cars,
+    protected: true,
   },
   {
     name: "Employees",
@@ -37,6 +40,7 @@ export const routes: IRoute[] = [
     route: "/employees",
     icon: <IoPeople size="15px" color="inherit" />,
     component: Employees,
+    protected: true,
   },
   {
     name: "Sign In",
@@ -44,5 +48,6 @@ export const routes: IRoute[] = [
     route: "/signin",
     icon: <IoPerson size="15px" color="inherit" />,
     component: Login,
+    protected: false,
   },
 ];

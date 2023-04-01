@@ -8,13 +8,18 @@ import colors from "assets/theme/base/colors";
 import borders from "assets/theme/base/borders";
 import { useAppDispatch } from 'hooks/useTypedSelector';
 
-
 const authUsers = [
   {
       id: 1,
       username: "canokulmus",
       name: "Can Okulmuş",
       password: "123456",
+  },
+  {
+      id: 1,
+      username: "a",
+      name: "Can Can",
+      password: "a",
   }
 ]
 

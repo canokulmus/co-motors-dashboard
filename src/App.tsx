@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from './hooks/useTypedSelector';
 function App() {
   const { pathname  } = useLocation();
   const dispatch = useAppDispatch();
-  const sidenav = useAppSelector((state) => state.sidenav);
+  const {sidenav, user} = useAppSelector((state) => state); 
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -36,13 +36,19 @@ function App() {
           width={'100%'}
         >
           <Switch>
-            {routes.map((route) => (
+            {routes.map((route) => {
+
+              if (route.protected && !user.loggedIn) {
+                return;
+              }
+
+              return ( 
               <Route
                 path={route.route}
                 component={route.component}
                 key={route.key}
-              />
-            ))}
+              />)
+            })}
             <Redirect from='*' to='/signin' />
           </Switch>
         </Box>
