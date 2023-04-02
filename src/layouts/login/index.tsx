@@ -16,10 +16,16 @@ const authUsers = [
       password: "123456",
   },
   {
-      id: 1,
+      id: 2,
       username: "a",
       name: "Can Can",
       password: "a",
+  },
+  {
+      id: 3,
+      username: "baran",
+      name: "Baran Aydın",
+      password: "1111",
   }
 ]
 
@@ -55,7 +61,7 @@ const Login = () => {
         loggedIn: true,
       }));
       history.push("/cars");
-      
+
     }else{
       setError({
         username: false,
