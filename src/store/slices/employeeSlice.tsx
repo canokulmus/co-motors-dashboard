@@ -3,7 +3,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchEmployees = createAsyncThunk('employee/fetch', async (_, thunkApi) => {
 
     try {
-        console.log("can")
         const response = await fetch('https://jsonplaceholder.typicode.com/users');
         const data = await response.json();
         return data;
@@ -48,7 +47,6 @@ const employeeSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchEmployees.fulfilled, (state, action) => {
-            console.log(action.payload)
             return action.payload;
         });
     }

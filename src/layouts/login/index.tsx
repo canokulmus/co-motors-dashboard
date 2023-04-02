@@ -35,14 +35,12 @@ const Login = () => {
   });
 
   const handleLogin = () => {
-
-    // Validate username
+    // required fields
     if (username === "" || password === "") {
       setError({
         username: username === "",
         password: password === "",
       });
-
       return
     }
 
@@ -56,8 +54,17 @@ const Login = () => {
         username: user.username,
         loggedIn: true,
       }));
-
       history.push("/cars");
+      
+    }else{
+      setError({
+        username: false,
+        password: false,
+      });
+
+      setUsername("");
+      setPassword("");
+      alert("User not found!");
     }
   };
 
@@ -103,7 +110,6 @@ const Login = () => {
           width={"100%"}
         >
             <Box
-              maxWidth={300}
               display={"flex"}
               justifyContent={"center"}
               my = {4}
@@ -111,23 +117,44 @@ const Login = () => {
               <img src="images/logo2.svg" alt="co-motors logo" width={"75%"} />
             </Box>
 
-            <Input 
-              label="Username"
-              placeholder="Enter username..."
-              value= {username}
-              onChange= { (e) => setUsername(e.target.value)}
-              error={error.username}
-              type="text"
-            />
+            <Box
+              px = {4}
+              sx = {{
+                width: {
+                  xs: '100%',
+                  md: '50%',
+                },
+              }}
+            >
+              <Input 
+                label="Username"
+                placeholder="Enter username..."
+                value= {username}
+                onChange= { (e) => setUsername(e.target.value)}
+                error={error.username}
+                type="text"
+              />
+            </Box>
 
-            <Input 
-              label="Password"
-              placeholder="Enter password..."
-              value={password}
-              onChange= { (e) => setPassword(e.target.value)}
-              error={error.password}
-              type="password"
-            />
+
+            <Box
+              px = {4}
+              sx = {{
+                width: {
+                  xs: '100%',
+                  md: '50%',
+                },
+              }}
+            >
+              <Input 
+                label="Password"
+                placeholder="Enter password..."
+                value={password}
+                onChange= { (e) => setPassword(e.target.value)}
+                error={error.password}
+                type="password"
+              />
+            </Box>
 
           <Button
             variant="contained"
