@@ -22,11 +22,12 @@ import { useAppDispatch, useAppSelector } from 'hooks/useTypedSelector';
 import { setUser } from 'store';
 import { useHistory } from 'react-router-dom';
 import colors from 'assets/theme/base/colors';
+import { Typography } from '@mui/material';
 
 const Navbar = () => {
 
   const dispatch = useAppDispatch();
-  const sidenav = useAppSelector((state: any) => state.sidenav);
+  const {sidenav, user} = useAppSelector((state) => state);
   const { pathname  } = useLocation();
   const history = useHistory();
 
@@ -76,7 +77,13 @@ const Navbar = () => {
             },
 
           }}
-      >
+      > 
+        {user.loggedIn && (
+          <Typography
+            textAlign={'center'}
+            variant={'h6'}
+          >{user.name}</Typography>
+        )}
         <MenuItem onClick={handleLogout}>SIGN OUT</MenuItem>
       </Menu>
     );

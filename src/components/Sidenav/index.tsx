@@ -139,6 +139,12 @@ const Sidenav = () => {
           <Box
             p = {3}
           >
+            {user.loggedIn && (
+              <Typography
+                textAlign={'center'}
+                variant={'h6'}
+              >Current User: {user.name}</Typography>
+            )}
             <Button
               variant="contained"
               sx={{
