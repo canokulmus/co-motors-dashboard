@@ -6,7 +6,7 @@ import Employees from "layouts/employees";
 import Login from "layouts/login";
 
 //icons
-import { IoHome } from "react-icons/io5";
+import { IoAdd } from "react-icons/io5";
 import { IoPerson, IoPeople } from "react-icons/io5";
 import { IoCarSportSharp } from "react-icons/io5";
 export interface IRoute {
@@ -19,14 +19,7 @@ export interface IRoute {
 }
 
 export const routes: IRoute[] = [
-  {
-    name: "Dashboard",
-    key: "dashboard",
-    route: "/dashboard",
-    icon: <IoHome size="15px" color="inherit" />,
-    component: Dashboard,
-    protected: true,
-  },
+
   {
     name: "Cars",
     key: "cars",
@@ -49,6 +42,14 @@ export const routes: IRoute[] = [
     route: "/employees",
     icon: <IoPeople size="15px" color="inherit" />,
     component: Employees,
+    protected: true,
+  },
+  {
+    name: "Add Employee",
+    key: "add-employee",
+    route: "/add-employee",
+    icon: <IoAdd size="15px" color="inherit" />,
+    component: Dashboard,
     protected: true,
   },
   {

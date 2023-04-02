@@ -57,7 +57,7 @@ const Login = () => {
         loggedIn: true,
       }));
 
-      history.push("/dashboard");
+      history.push("/cars");
     }
   };
 
