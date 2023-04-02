@@ -106,6 +106,7 @@ const Sidenav = () => {
           display: sidenav.open ? 'flex' : 'none',
           transition: 'all 0.3s ease-in-out',
           position: 'fixed',
+          zIndex: 100,
         }}
         p = {2}
       >

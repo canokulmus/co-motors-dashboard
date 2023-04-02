@@ -19,127 +19,75 @@ import { toggleSidenav } from 'store/index';
 import { useLocation } from 'react-router-dom';
 import { routes } from 'routes';
 import { useAppDispatch, useAppSelector } from 'hooks/useTypedSelector';
+import { setUser } from 'store';
+import { useHistory } from 'react-router-dom';
+import colors from 'assets/theme/base/colors';
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: '10px',
-  marginLeft: 0,
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
+const Navbar = () => {
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
+  const dispatch = useAppDispatch();
+  const sidenav = useAppSelector((state: any) => state.sidenav);
+  const { pathname  } = useLocation();
+  const history = useHistory();
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
-
- const Navbar = () => {
-
-const dispatch = useAppDispatch();
-const sidenav = useAppSelector((state: any) => state.sidenav);
-const { pathname  } = useLocation();
-
-const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+      setAnchorEl(event.currentTarget);
     };
 
     const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
+      setMobileMoreAnchorEl(null);
     };
 
     const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
+      setAnchorEl(null);
+      handleMobileMenuClose();
     };
 
     const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setMobileMoreAnchorEl(event.currentTarget);
+      setMobileMoreAnchorEl(event.currentTarget);
     };
+    const handleLogout = () => {
+      dispatch(setUser({
+        loggedIn: false,
+        name: '',
+        username: '',
+      }));
+      history.push('/signin');
+    }
 
     const menuId = 'primary-search-account-menu';
-    const renderMenu = (
-    <Menu
-        anchorEl={anchorEl}
-        anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-        }}
-        id={menuId}
-        keepMounted
-        transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-        }}
-        open={isMenuOpen}
-        onClose={handleMenuClose}
-    >
-        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-    );
 
-    const mobileMenuId = 'primary-search-account-menu-mobile';
-    const renderMobileMenu = (
-    <Menu
-        anchorEl={mobileMoreAnchorEl}
-        anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-        }}
-        id={mobileMenuId}
-        keepMounted
-        transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-        }}
-        open={isMobileMenuOpen}
-        onClose={handleMobileMenuClose}
-    >
-        <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="primary-search-account-menu"
-            aria-haspopup="true"
-            color="inherit"
-        >
-            <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-        </MenuItem>
-    </Menu>
+    const renderMenu = (
+      <Menu
+          anchorEl={anchorEl}
+          anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+          }}
+          id={menuId}
+          keepMounted
+          transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+          }}
+          open={isMenuOpen}
+          onClose={handleMenuClose}
+          sx = {{
+            '& .MuiPaper-root': {
+              backgroundColor: colors.primary.main,
+              boxShadow: 'none',
+            },
+
+          }}
+      >
+        <MenuItem onClick={handleLogout}>SIGN OUT</MenuItem>
+      </Menu>
     );
 
   return (
@@ -180,7 +128,7 @@ const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>
                     />
                 </Search> */}
 
-                <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                <Box sx={{ display: "flex" }}>
 
                     <IconButton
                     size="large"
@@ -204,23 +152,10 @@ const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>
                         <IoMenu />
                     </IconButton>
                 </Box>
-                <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                    <IconButton
-                    size="large"
-                    aria-label="show more"
-                    aria-controls={mobileMenuId}
-                    aria-haspopup="true"
-                    onClick={handleMobileMenuOpen}
-                    color="inherit"
-                    >
-                    <MoreIcon />
-                    </IconButton>
-                </Box>
             </Box>
 
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
       {renderMenu}
     </Box>
   );
