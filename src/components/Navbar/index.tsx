@@ -31,27 +31,18 @@ const Navbar = () => {
   const history = useHistory();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
 
     const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
       setAnchorEl(event.currentTarget);
     };
 
-    const handleMobileMenuClose = () => {
-      setMobileMoreAnchorEl(null);
-    };
 
     const handleMenuClose = () => {
       setAnchorEl(null);
-      handleMobileMenuClose();
     };
 
-    const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-      setMobileMoreAnchorEl(event.currentTarget);
-    };
     const handleLogout = () => {
       dispatch(setUser({
         loggedIn: false,
@@ -114,22 +105,7 @@ const Navbar = () => {
             <Box
                 display={"flex"}
             >
-                {/* <Search
-                    sx={{
-                        height: '100%',
-                    }}
-                >
-                    <SearchIconWrapper>
-                    <SearchIcon />
-                    </SearchIconWrapper>
-                    <StyledInputBase
-                    placeholder="Car Search…"
-                    inputProps={{ 'aria-label': 'search' }}
-                    />
-                </Search> */}
-
                 <Box sx={{ display: "flex" }}>
-
                     <IconButton
                     size="large"
                     edge="end"
@@ -153,7 +129,6 @@ const Navbar = () => {
                     </IconButton>
                 </Box>
             </Box>
-
         </Toolbar>
       </AppBar>
       {renderMenu}
