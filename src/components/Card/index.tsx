@@ -7,8 +7,10 @@ import Button from '@mui/material/Button';
 import { CardActionArea } from '@mui/material';
 import  colors  from 'assets/theme/base/colors';
 import borders from 'assets/theme/base/borders';
+import { Link } from 'react-router-dom';
 const ProductCard = () => {
   return (
+
     <Card
         sx={{
             backgroundColor:"transparent !important",
@@ -17,45 +19,54 @@ const ProductCard = () => {
         }}
 
     >
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          image="images/bugatti.jpeg"
-          alt="green iguana"
-        />
-        <CardContent
-            sx={{
-                backgroundColor:"transparent !important"
-            }}
-        >
-          <Typography gutterBottom variant="h5" component="div">
-            Sample Product
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse, eius.
-          </Typography>
+      <Link 
+        to="/car-details"
+        style={{
+            textDecoration: "none",
+            color: "inherit",
+        }}
+      >
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            image="images/bugatti.jpeg"
+            alt="green iguana"
+          />
+          <CardContent
+              sx={{
+                  backgroundColor:"transparent !important"
+              }}
+          >
+            <Typography gutterBottom variant="h5" component="div">
+            Bugatti Chiron X-Clusive
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse, eius.
+            </Typography>
 
-          {/* button */}
-            <Button
-                variant="contained"
-                sx={{
-                    backgroundColor: "transparent !important",
-                    boxShadow: "none !important",
-                    color: colors.text.primary,
-                    borderRadius: borders.borderRadius.lg,
-                    border: `1px solid white`,
-                    width: "100%",
-                    marginTop: "1rem",
-                    "&:hover": {
-                        backgroundColor: colors.dark.focus,
-                    },
-                }}
-            >
-                View Details
-            </Button>
-        </CardContent>
-      </CardActionArea>
+            {/* button */}
+              <Button
+                  variant="contained"
+                  sx={{
+                      backgroundColor: "transparent !important",
+                      boxShadow: "none !important",
+                      color: colors.text.primary,
+                      borderRadius: borders.borderRadius.lg,
+                      border: `1px solid white`,
+                      width: "100%",
+                      marginTop: "1rem",
+                      "&:hover": {
+                          backgroundColor: colors.dark.focus,
+                      },
+                  }}
+              >
+                  View Details
+              </Button>
+          </CardContent>
+        </CardActionArea>
+      </Link>
     </Card>
+
   );
 }
 

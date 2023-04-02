@@ -1,5 +1,6 @@
 //layouts
 import Dashboard from "layouts/dashboard";
+import CarDetails from "layouts/carDetails";
 import Cars from "layouts/cars"
 import Employees from "layouts/employees";
 import Login from "layouts/login";
@@ -32,6 +33,14 @@ export const routes: IRoute[] = [
     route: "/cars",
     icon: <IoCarSportSharp size="15px" color="inherit" />,
     component: Cars,
+    protected: true,
+  },
+  {
+    name: "Car Details",
+    key: "car-details",
+    route: "/car-details",
+    icon: <IoCarSportSharp size="15px" color="inherit" />,
+    component: CarDetails,
     protected: true,
   },
   {
