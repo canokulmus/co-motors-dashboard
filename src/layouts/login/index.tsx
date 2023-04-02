@@ -75,10 +75,11 @@ const Login = () => {
         <Grid 
           item 
           xs={12} 
-          lg ={6}
+          xl ={6}
           sx={{
             height: "100vh",
             backgroundColor: "#f5f5f5",
+            display: { xs: 'none', xl: 'block' },
           }}
          >
           <img 
@@ -93,7 +94,7 @@ const Login = () => {
           />
         </Grid>
 
-        <Grid item xs={12} lg ={6} 
+        <Grid item xs={12} xl ={6} 
           display = "flex"
           alignItems = "center"
           justifyContent = "center"
